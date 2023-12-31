@@ -19,6 +19,10 @@ For more projects related to 42cursus, please visit the [hive-42cursus](https://
 | [02](./cpp02/) | `ad-hoc polymorphism` `operator overloading` |
 | [03](./cpp03/) | `inheritance` |
 | [04](./cpp04/) | `subtype polymorphism` `abstract class` `interface` |
+| [05](./cpp05/) | `exception` |
+| [06](./cpp06/) | `cast` |
+| [07](./cpp07/) | `template` |
+| [08](./cpp08/) | `templated container` `iterator` `algorithm` |
 
 
 
