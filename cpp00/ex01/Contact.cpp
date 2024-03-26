@@ -25,19 +25,17 @@ void Contact::_setContactField (std::string prompt, std::string &field) {
 			break;
 		std::cout << prompt;
 		std::getline(std::cin, field);
-		if (std::cin.eof())
-			break;
-	} while (!_checkContactField(field));
+	} while (!std::cin.eof() && _isEmptyField(field));
 
 }
 
-bool Contact::_checkContactField (std::string field) {
+bool Contact::_isEmptyField (std::string field) {
 
-	if (field.empty() || field.find_first_not_of(" ") == field.npos) {
+	if (field.empty() || field.find_first_not_of(" \t") == field.npos) {
 		std::cout << "Empty Input" << std:: endl;
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 
 }
 

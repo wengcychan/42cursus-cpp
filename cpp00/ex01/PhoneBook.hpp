@@ -13,6 +13,8 @@ class PhoneBook
 		int		_nbContact;
 		Contact	_contact[MAX_NBR_CONTACT];
 
+		void	_addContact(void);
+		void	_searchContact(void);
 		void	_displayContactList(void);
 		void 	_displaySelectedContact(void);
 		bool _checkIndex(std::string str);
@@ -20,11 +22,9 @@ class PhoneBook
 
 	public:
 
-        PhoneBook(void);
+    PhoneBook(void);
 		~PhoneBook(void);
-		void	addContact(void);
-		void	searchContact(void);
-
+		void	run(void);
 };
 
 #endif
