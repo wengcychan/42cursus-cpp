@@ -8,9 +8,7 @@ int ScalarConverter::convert(std::string str)
 		convertChar(str);
 	else
 	{
-		t_nbrType nbrType = numberType(str);
-
-		switch (nbrType) 
+		switch (checkNumberType(str)) 
 		{
 			case INT:
 				convertInt(str);
@@ -26,7 +24,6 @@ int ScalarConverter::convert(std::string str)
 				std::cout << "Invalid input" << std::endl;
 				return 1;
 		}
-		
 	}
 
 	return 0;

@@ -15,7 +15,7 @@ bool isPseudoDouble(std::string str)
 	return str == "-inf" || str == "+inf" || str == "nan";
 }
 
-t_nbrType numberType(std::string str)
+t_nbrType checkNumberType(std::string str)
 {
 	if (isPseudoFloat(str))
 		return FLOAT;
@@ -24,12 +24,10 @@ t_nbrType numberType(std::string str)
 
 	t_nbrType nbrType = INT;
 
-	std::string::iterator it = str.begin();
-	if (*it == '-' || *it == '+')
-		it++;
-	else if (!std::isdigit(*it))
+	if (!std::isdigit(str[0]) && str[0] != '-' && str[0] != '+')
 		return NONE;
-	for ( ; it != str.end(); ++it)
+		
+	for (std::string::iterator it = str.begin() + 1; it != str.end(); ++it)
 	{
 		if (*it == '.')
 		{
@@ -67,14 +65,13 @@ void convertChar(std::string str)
 void convertInt(std::string str)
 {
 	int i = std::atoi(str.c_str());
-	
 	char c = static_cast<char>(i);
 	float f = static_cast<float>(i);
 	double d = static_cast<double>(i);
 
-	if (c < 0 || c > 127)
+	if (c < 0)
 		std::cout << "char: impossible" << std::endl;
-	else if (c >= 32 && c <= 126)
+	else if (std::isprint(c))
 		std::cout << "char: '" << c << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
@@ -87,14 +84,13 @@ void convertInt(std::string str)
 void convertFloat(std::string str)
 {
 	float f = std::atof(str.c_str());
-
 	double d = static_cast<double>(f);
 	char c = static_cast<char>(f);
 	int i = static_cast<int>(f);
 
-	if (isPseudoFloat(str) || c < 0 || c > 127)
+	if (isPseudoFloat(str) || c < 0)
 		std::cout << "char: impossible" << std::endl;
-	else if (c >= 32 && c <= 126)
+	else if (std::isprint(c))
 		std::cout << "char: '" << c << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
@@ -125,9 +121,9 @@ int convertDouble(std::string str)
 	char c = static_cast<char>(d);
 	int i = static_cast<int>(d);
 
-	if (isPseudoDouble(str) || c < 0 || c > 127)
+	if (isPseudoDouble(str) || c < 0)
 		std::cout << "char: impossible" << std::endl;
-	else if (c >= 32 && c <= 126)
+	else if (std::isprint(c))
 		std::cout << "char: '" << c << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;

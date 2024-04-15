@@ -18,7 +18,7 @@ typedef enum nbrType
 bool		isChar(std::string str);
 bool		isPseudoFloat(std::string str);
 bool		isPseudoDouble(std::string str);
-t_nbrType	numberType(std::string str);
+t_nbrType	checkNumberType(std::string str);
 
 void	convertInt(std::string str);
 void	convertFloat(std::string str);
