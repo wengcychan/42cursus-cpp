@@ -4,34 +4,19 @@
 #include <cstring>
 #include <sys/stat.h>
 
-static void	copyAndReplaceLine( char **argv, std::ifstream &ifs, std::ofstream &ofs ) {
+static void copyAndReplaceLine(const std::string& s1, const std::string& s2, std::ifstream& ifs, std::ofstream& ofs) {
 
-	std::string		line;
-	std::size_t		s1Pos;
-
-	std::string s1 = argv[2];
-	std::string s2 = argv[3];
-
-	while (getline(ifs, line)) {
-	
-		while (1)
-		{
-			if (s1 == s2) {
-				ofs << line;
-				break;
-			}
-			s1Pos = line.find(s1);
-			ofs << line.substr(0, s1Pos);
-			if (s1Pos == std::string::npos)
-				break;
-			ofs << s2;
-			line = line.substr(s1Pos + s1.length());
+	std::string line;
+	while (std::getline(ifs, line)) {
+		size_t pos = 0;
+		while ((pos = line.find(s1, pos)) != std::string::npos) {
+				line = line.substr(0, pos) + s2 + line.substr(pos + s1.length());
+				pos += s2.length();
 		}
-
+		ofs << line;
 		if (!ifs.eof())
 			ofs << std::endl;
 	}
-
 }
 
 int	main ( int argc, char **argv ) {
@@ -43,8 +28,7 @@ int	main ( int argc, char **argv ) {
 
 	std::string filename = argv[1];
 	std::ifstream	ifs(filename);
-    struct stat		info;
-
+  struct stat		info;
 	stat(filename.c_str(), &info);
 	if (!ifs || (info.st_mode & S_IFDIR)) {
 		std::cout << "Invalid ifstream" << std::endl;
@@ -53,15 +37,17 @@ int	main ( int argc, char **argv ) {
 	}
 
 	std::ofstream	ofs(filename + ".replace");
-
-	if (ofs)
-		copyAndReplaceLine(argv, ifs, ofs);
-	else
+	if (!ofs)
+	{
 		std::cout << "Invalid ofstream" << std::endl;
+		ifs.close();
+		ofs.close();
+		return 1;	
+	}
 
+	copyAndReplaceLine(argv[2], argv[3], ifs, ofs);
 	ifs.close();
 	ofs.close();
 
 	return 0;
-
 }

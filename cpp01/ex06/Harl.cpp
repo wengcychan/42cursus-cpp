@@ -33,10 +33,10 @@ void	Harl::error( void ) {
 
 void	Harl::complain( std::string level ) {
 
-	int	i = 0;
+	int	i;
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for (; i < 4; ++i) {
+	for (i = 0; i < 4; ++i) {
 		if (level == levels[i])
 			break;
 	}
