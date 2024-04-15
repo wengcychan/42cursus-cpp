@@ -18,7 +18,7 @@ void	Contact::setContact(void) {
 
 }
 
-void Contact::_setContactField (std::string prompt, std::string &field) {
+void Contact::_setContactField (std::string const &prompt, std::string &field) {
 
 	do {
 		if (std::cin.eof())
@@ -29,7 +29,7 @@ void Contact::_setContactField (std::string prompt, std::string &field) {
 
 }
 
-bool Contact::_isEmptyField (std::string field) {
+bool Contact::_isEmptyField (std::string const &field) {
 
 	if (field.empty() || field.find_first_not_of(" \t") == field.npos) {
 		std::cout << "Empty Input" << std:: endl;
@@ -39,7 +39,7 @@ bool Contact::_isEmptyField (std::string field) {
 
 }
 
-void	Contact::displayContactListItem(int i) {
+void	Contact::displayContactListItem(int const &i) {
 
 	std::cout << std::right << std::setw(COLUMN_WIDTH) << i + 1 << "|";
 	std::cout << std::right << std::setw(COLUMN_WIDTH) << _truncContactListItem(_firstName) << "|";

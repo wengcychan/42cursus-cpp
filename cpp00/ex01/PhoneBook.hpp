@@ -17,7 +17,7 @@ class PhoneBook
 		void	_searchContact(void);
 		void	_displayContactList(void);
 		void 	_displaySelectedContact(void);
-		bool _checkIndex(std::string str);
+		bool _checkIndex(std::string const &str);
 
 
 	public:

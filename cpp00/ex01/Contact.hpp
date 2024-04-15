@@ -16,8 +16,8 @@ class Contact
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
 
-		void		_setContactField(std::string prompt, std::string &field);
-		bool		_isEmptyField(std::string field);
+		void		_setContactField(std::string const &prompt, std::string &field);
+		bool		_isEmptyField(std::string const &field);
 		std::string	_truncContactListItem(std::string item);
 
 	
@@ -26,7 +26,7 @@ class Contact
 		Contact(void);
 		~Contact(void);
 		void	setContact(void);
-		void	displayContactListItem(int i);
+		void	displayContactListItem(int const &i);
 		void	displayContactInfo(void) const;
 
 };

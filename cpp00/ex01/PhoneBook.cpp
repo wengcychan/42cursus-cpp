@@ -41,7 +41,7 @@ void	PhoneBook::_addContact(void) {
 
 void	PhoneBook::_searchContact(void) {
 	
-	if (_nbContact == 0)
+	if (!_nbContact)
 	{
 		std::cout << "No Record" << std::endl;
 		return ;
@@ -74,7 +74,7 @@ void PhoneBook::_displaySelectedContact(void) {
 
 }
 
-bool PhoneBook::_checkIndex(std::string str) {
+bool PhoneBook::_checkIndex(std::string const &str) {
 
 	int index = std::atoi(str.c_str());
 	if (str.empty() || str.find_first_not_of(" \t") == str.npos) {
