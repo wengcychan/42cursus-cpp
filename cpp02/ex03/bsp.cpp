@@ -20,9 +20,7 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point ) {
 	Fixed Area2 = triangleArea(a , c , point);
 	Fixed Area3 = triangleArea(b , c , point);
 
-	if (Area1 == 0 || Area2 == 0 || Area3 == 0) 
-		return false;
-	if (Area1 + Area2 + Area3 != totalArea)
+	if (Area1 == 0 || Area2 == 0 || Area3 == 0 || Area1 + Area2 + Area3 != totalArea) 
 		return false;
 	return true;
 
